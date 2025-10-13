@@ -57,7 +57,10 @@
 - **Modern GUI** – Cross-platform native performance with Avalonia .NET
 - **Python Extension Support** – Add custom protocol dissection with Python plugins
 
-> **Important:** A [PRO version](https://interceptsuite.com) is available with additional features including STARTTLS support, PCAP export, and universal TLS upgrade detection.
+> [!NOTE]
+> [PRO version](https://interceptsuite.com) is available with additional features including STARTTLS support, PCAP export, and universal TLS upgrade detection.
+
+> **Note:** A
 
 ## 🚀 Getting Started
 
