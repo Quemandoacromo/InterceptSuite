@@ -33,7 +33,7 @@
 extern void send_log_entry(const char * src_ip,
   const char * dst_ip, int dst_port,
     const char * direction, const unsigned char * data, int data_length,
-      const char * msg_type, int connection_id, int packet_id);
+      const char * msg_type, int connection_id, int packet_id, const char * protocol);
 extern void send_status_update(const char * message);
 extern void send_connection_notification(const char * client_ip, int client_port,
   const char * target_host, int target_port, int connection_id);
@@ -55,7 +55,7 @@ static int g_connection_id_counter = 0;
 void pretty_print_data(const char * direction,
   const unsigned char * data, int len,
     const char * src_ip,
-      const char * dst_ip, int dst_port, int connection_id, int packet_id) {
+      const char * dst_ip, int dst_port, int connection_id, int packet_id, const char * protocol) {
 
   char message[BUFFER_SIZE] = {
     0
@@ -140,7 +140,7 @@ void pretty_print_data(const char * direction,
   // Determine message type for the callback
   const char * message_type = detect_message_type(data, len);
 
-  send_log_entry(src_ip, dst_ip, dst_port, direction, data, len, message_type, connection_id, packet_id);
+  send_log_entry(src_ip, dst_ip, dst_port, direction, data, len, message_type, connection_id, packet_id, protocol);
 }
 
 /* Message type detection function (shared with UDP) */
@@ -295,7 +295,7 @@ void forward_data(SSL * src, SSL * dst,
 
       // Print the intercepted data
       int current_packet_id = get_next_packet_id();
-      pretty_print_data(direction, buffer, len, src_ip, dst_ip, dst_port, connection_id, current_packet_id);
+      pretty_print_data(direction, buffer, len, src_ip, dst_ip, dst_port, connection_id, current_packet_id, "TLS");
 
       // Check if we should intercept this data
       if (should_intercept_data(direction, connection_id)) {
@@ -512,7 +512,7 @@ void forward_data(SSL * src, SSL * dst,
           }
           // Print the intercepted data
           int current_packet_id = get_next_packet_id();
-          pretty_print_data(direction, buffer, len, src_ip, dst_ip, dst_port, connection_id, current_packet_id);
+          pretty_print_data(direction, buffer, len, src_ip, dst_ip, dst_port, connection_id, current_packet_id, "TCP");
 
           // Check if we should intercept this data
           if (should_intercept_data(direction, connection_id)) {
@@ -832,7 +832,7 @@ void forward_data(SSL * src, SSL * dst,
             }
 
             // Print the intercepted data
-            pretty_print_data("??", buffer, len, src_ip, dst_ip, dst_port, connection_id, packet_id);
+            pretty_print_data("??", buffer, len, src_ip, dst_ip, dst_port, connection_id, packet_id, "TLS");
 
             // Additional SSL state validation before write
             if (!SSL_is_init_finished(dst)) {
@@ -1817,6 +1817,6 @@ void process_alpn_data(SSL * ssl, const unsigned char * data, int len,
 
         // Send to GUI with protocol information
         send_log_entry(src_ip, dst_ip, dst_port, direction, data, len,
-                      msg_type, connection_id, packet_id);
+                      msg_type, connection_id, packet_id, "TLS");
     }
 }

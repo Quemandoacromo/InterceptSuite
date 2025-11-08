@@ -385,14 +385,14 @@ void send_status_update(const char * message) {
 void send_log_entry(const char * src_ip,
   const char * dst_ip, int dst_port,
     const char * direction, const unsigned char * data, int data_length,
-      const char * msg_type, int connection_id, int packet_id) {
-  if (g_log_callback && src_ip && dst_ip && msg_type && data) {
+      const char * msg_type, int connection_id, int packet_id, const char * protocol) {
+  if (g_log_callback && src_ip && dst_ip && msg_type && data && protocol) {
     char timestamp[64];
     time_t now = time(NULL);
     struct tm * tm_info = localtime( & now);
     strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", tm_info);
 
-    g_log_callback(timestamp, connection_id, packet_id, direction, src_ip, dst_ip, dst_port, "TCP", data, data_length, msg_type);
+    g_log_callback(timestamp, connection_id, packet_id, direction, src_ip, dst_ip, dst_port, protocol, data, data_length, msg_type);
   }
 }
 

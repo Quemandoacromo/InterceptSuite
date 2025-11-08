@@ -15,10 +15,8 @@ extern proxy_config config;
 
 /* External callback functions from main.c */
 extern void send_log_entry(const char *src_ip, const char *dst_ip, int dst_port,
-                          const char *direction, const unsigned char *data, int data_length,
-                          const char *msg_type, int connection_id, int packet_id);
-
-/* External packet ID counter */
+                           const char *direction, const unsigned char *data, int data_length,
+                           const char *msg_type, int connection_id, int packet_id, const char *protocol);/* External packet ID counter */
 extern int g_packet_id_counter;
 
 /*
@@ -144,7 +142,7 @@ void process_http2_frame(const char *data, int length, const char *direction,
 
     // Send to GUI for protocol-aware display
     send_log_entry(src_ip, dst_ip, dst_port, direction,
-                  (unsigned char*)data, length, frame_type_name, connection_id, packet_id);
+                  (unsigned char*)data, length, frame_type_name, connection_id, packet_id, "TLS");
 }
 
 /*
@@ -175,5 +173,5 @@ void process_http11_data(const char *data, int length, const char *direction,
 
     // Send to GUI
     send_log_entry(src_ip, dst_ip, dst_port, direction,
-                  (unsigned char*)data, length, msg_type, connection_id, packet_id);
+                  (unsigned char*)data, length, msg_type, connection_id, packet_id, "TLS");
 }
