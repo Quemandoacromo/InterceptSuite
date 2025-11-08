@@ -1,0 +1,138 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="550" d:DesignHeight="500"
+        x:Class="InterceptSuite.Views.UpdateNotificationWindow"
+        Title="Update Available"
+        Width="550" Height="520"
+        MinWidth="500" MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        Icon="/logo.ico">
+
+    <Window.Styles>
+        <Style Selector="TextBlock.Title">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <Style Selector="TextBlock.Subtitle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,15,0,8"/>
+        </Style>
+
+        <Style Selector="Button.Primary">
+            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="20,8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style Selector="Button.Primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#45a049"/>
+        </Style>
+
+        <Style Selector="Button.Secondary">
+            <Setter Property="Padding" Value="20,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style Selector="RadioButton">
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+
+        <Style Selector="ProgressBar">
+            <Setter Property="Height" Value="6"/>
+            <Setter Property="Foreground" Value="#4CAF50"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Classes="Title" x:Name="TitleText">
+                New Version Available!
+            </TextBlock>
+            <TextBlock x:Name="VersionInfoText" FontSize="13" Foreground="#666">
+                Version 1.2.0 is now available (you have 1.1.0)
+            </TextBlock>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Margin="0,15,0,0">
+            <StackPanel>
+                <Button x:Name="ReleaseNotesButton"
+                        Content="Check Release Notes"
+                        Click="ReleaseNotesButton_Click"
+                        HorizontalAlignment="Left"
+                        Padding="15,8"
+                        Margin="0,0,0,15"
+                        Cursor="Hand">
+                    <Button.Styles>
+                        <Style Selector="Button">
+                            <Setter Property="Background" Value="#2196F3"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                        </Style>
+                        <Style Selector="Button:pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#1976D2"/>
+                        </Style>
+                    </Button.Styles>
+                </Button>
+
+                <TextBlock Classes="Subtitle" Margin="0,5,0,8">Choose Installer:</TextBlock>
+                <StackPanel x:Name="InstallerOptionsPanel">
+                </StackPanel>
+
+                <StackPanel x:Name="DownloadProgressPanel" IsVisible="False" Margin="0,15,0,0">
+                    <TextBlock x:Name="DownloadStatusText"
+                               FontSize="12"
+                               Margin="0,0,0,8">
+                        Downloading...
+                    </TextBlock>
+                    <ProgressBar x:Name="DownloadProgressBar"
+                                 Minimum="0"
+                                 Maximum="100"
+                                 Value="0"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Spacing="10"
+                    Margin="0,20,0,0">
+            <Button Classes="Primary"
+                    x:Name="DownloadButton"
+                    Content="Download &amp; Install"
+                    Click="DownloadButton_Click"/>
+            <Button Classes="Secondary"
+                    x:Name="NotNowButton"
+                    Content="Not Now"
+                    Click="NotNowButton_Click"/>
+            <Button Classes="Secondary"
+                    x:Name="DontRemindButton"
+                    Content="Don't Remind Again"
+                    Click="DontRemindButton_Click"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="3"
+                   x:Name="FooterText"
+                   FontSize="11"
+                   Foreground="#999"
+                   Margin="0,10,0,0"
+                   TextWrapping="Wrap">
+            The installer will be downloaded to your Downloads folder.
+        </TextBlock>
+    </Grid>
+</Window>

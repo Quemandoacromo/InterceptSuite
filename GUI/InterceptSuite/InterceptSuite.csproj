@@ -34,6 +34,7 @@
     <PublishTrimmed>true</PublishTrimmed>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
+    <JsonSerializerIsReflectionEnabledByDefault>true</JsonSerializerIsReflectionEnabledByDefault>
 
     <!-- Avalonia self-contained optimizations -->
     <InvariantGlobalization>false</InvariantGlobalization>

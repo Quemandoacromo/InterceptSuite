@@ -60,7 +60,6 @@
 > [!NOTE]
 > [PRO version](https://interceptsuite.com) is available with additional features including STARTTLS support, PCAP export, and universal TLS upgrade detection.
 
-> **Note:** A
 
 ## 🚀 Getting Started
 
