@@ -7,7 +7,7 @@
 !define APP_NAME "InterceptSuite Standard"
 ; Version will be passed from build script via /DAPP_VERSION=x.x.x
 !ifndef APP_VERSION
-    !define APP_VERSION "1.0"
+    !define APP_VERSION "1.2"
 !endif
 !define APP_PUBLISHER "InterceptSuite"
 !define APP_EXE "InterceptSuite.exe"

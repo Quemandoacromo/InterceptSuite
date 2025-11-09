@@ -22,7 +22,7 @@ get_version() {
         version=$(grep -E '<ProductVersion>' "$CSPROJ_FILE" | sed -E 's/.*<ProductVersion>([^<]+)<.*/\1/' | head -1)
     fi
     if [ -z "$version" ]; then
-        version="1.0.0.0"
+        version="1.2.0.0"
     fi
     echo "$version"
 }
