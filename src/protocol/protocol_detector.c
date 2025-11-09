@@ -33,16 +33,16 @@ extern int g_packet_id_counter;
 int detect_protocol(socket_t sock) {
     unsigned char peek_buffer[8] = {0};
     int bytes_peeked;
-    
+
     // Set a short timeout for protocol detection to avoid blocking
     fd_set readfds;
     struct timeval timeout;
-    
+
     FD_ZERO(&readfds);
     FD_SET(sock, &readfds);
     timeout.tv_sec = 2;  // 2 second timeout
     timeout.tv_usec = 0;
-    
+
     // Check if data is available for reading
     int ready = select((int)(sock + 1), &readfds, NULL, NULL, &timeout);
     if (ready <= 0) {
