@@ -58,7 +58,7 @@
 - **Python Extension Support** – Add custom protocol dissection with Python plugins
 
 > [!NOTE]
-> [PRO version](https://interceptsuite.com) is available with additional features including STARTTLS support, PCAP export, and universal TLS upgrade detection.
+> [PRO version](https://interceptsuite.com) is available with additional features including DTLS support, STARTTLS support, PCAP export, and universal TLS upgrade detection.
 
 
 ## 🚀 Getting Started
@@ -114,6 +114,7 @@ For detailed configuration instructions, see the [Documentation](https://doc.int
 
 - Non-HTTP TLS-encrypted protocols
 - TCP/TLS layer traffic analysis
+- UDP/DTLS traffic analysis
 - Custom TLS-encrypted protocols
 - Thick client applications
 - Game or IoT protocols

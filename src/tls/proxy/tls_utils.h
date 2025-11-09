@@ -31,7 +31,8 @@ THREAD_RETURN_TYPE forward_tcp_thread(void * arg);
 void pretty_print_data(const char * direction,
   const unsigned char * data, int len,
     const char * src_ip,
-      const char * dst_ip, int dst_port, int connection_id, int packet_id);
+      const char * dst_ip, int dst_port, int connection_id, int packet_id,
+        const char * protocol);
 
 THREAD_RETURN_TYPE handle_client(void * arg);
 
@@ -39,7 +40,8 @@ THREAD_RETURN_TYPE handle_client(void * arg);
 void send_log_entry(const char * src_ip,
   const char * dst_ip, int dst_port,
     const char * direction, const unsigned char * data, int data_length,
-      const char * message_type, int connection_id, int packet_id);
+      const char * message_type, int connection_id, int packet_id,
+        const char * protocol);
 
 void send_status_update(const char * message);
 
@@ -62,7 +64,7 @@ const char* detect_message_type(const unsigned char* data, int len);
 
 /* ALPN-aware data forwarding functions */
 void forward_data_with_alpn(SSL * src, SSL * dst,
-    const char * direction, const char * src_ip, const char * dst_ip, 
+    const char * direction, const char * src_ip, const char * dst_ip,
     int dst_port, int connection_id);
 
 void process_alpn_data(SSL * ssl, const unsigned char * data, int len,

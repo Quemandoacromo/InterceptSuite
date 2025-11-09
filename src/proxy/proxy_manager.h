@@ -39,7 +39,8 @@ void cleanup_winsock(void);
 void send_status_update(const char * message);
 void send_log_entry(const char * src_ip, const char * dst_ip, int dst_port,
     const char * direction, const unsigned char * data, int data_length,
-    const char * msg_type, int connection_id, int packet_id);
+    const char * msg_type, int connection_id, int packet_id,
+    const char * protocol);
 void send_connection_notification(const char * client_ip, int client_port,
     const char * target_host, int target_port, int connection_id);
 void send_disconnect_notification(int connection_id, const char * reason);
