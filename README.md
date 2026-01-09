@@ -68,9 +68,9 @@
 | PCAP Export | ❌ | ✅ |
 | Project File Management | ❌ | ✅ |
 | **Licensing** | | |
-| System Limit | Unlimited | Up to 3 |
+| System Limit | Unlimited | Up to 2 |
 | Support | Community | Email |
-| Price | Free & Open Source | [$35/month or $300/year](https://interceptsuite.com/pricing) |
+| Price | Free & Open Source | [$300/One-Time](https://interceptsuite.com/pricing) |
 
 
 ## Getting Started
@@ -108,8 +108,7 @@ Unlock advanced features for professional security testing and IoT analysis:
 - ✅ **Multi-System License** - Use on up to 3 systems simultaneously
 
 ### Pricing
-- **Monthly**: $35/month
-- **Yearly**: $300/year (Save $120 - 29% off)
+- **One Time**: $300
 
 ### Get Professional
 
